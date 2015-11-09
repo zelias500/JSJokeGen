@@ -1,0 +1,14 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="joke.controller.js"></script>
+</head>
+
+<body ng-app='jokeGenerator'>
+	<div ng-controller='jokeCtrl'>
+		<h1>JAVASCRIPT JOKE GENERATOR</h1>
+		<button ng-click='getJoke(jokeGetter)'>Get a Joke!</button>
+		<h2>{{currentJoke}}</h2>
+	</div>
+</body>
+</html>
