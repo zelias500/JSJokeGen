@@ -19,7 +19,8 @@ var jokes = [
 "The bartender says 'Success, but you're not ready!' A Javascript function walks into a bar",
 "If you're happy and you know it, syntax error",
 ' typeof ["hip", "hip"]  ',
-"To understand what recursion is, you must first understand recursion"
+"To understand what recursion is, you must first understand recursion",
+"Q: How do you comfort a Javascript bug? A: You console it"
 ];
 
 // body parser
