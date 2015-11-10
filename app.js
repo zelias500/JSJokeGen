@@ -4,17 +4,27 @@ var koa = require('koa');
 var serve = require('koa-static');
 var router = require('koa-route');
 var send = require('koa-send');
+var bodyParser = require('koa-body-parser');
 var app = koa();
 
+
+// this is the 'database'
+// actual database coming in next version
 var jokes = [
-"I tried to hire a Javascript plumber the other day. He didn't callback, but made a promise to fix the a-sink for me",
+"I tried to hire a Javascript plumber the other day. He didn't callback, but made a promise to fix a-sink for me",
 
 "A SQL query walks into a bar, walks up to two tables and says 'Can I join you?' ",
 
 "Q: What's the Object-Oriented way to become wealthy? A: Inheritance",
 
-"The bartender says 'Success, but you're not ready!' A Javascript function walks into a bar"
+"The bartender says 'Success, but you're not ready!' A Javascript function walks into a bar",
+"If you're happy and you know it, syntax error",
+' typeof ["hip", "hip"]  ',
+"To understand what recursion is, you must first understand recursion"
 ];
+
+// body parser
+app.use(bodyParser());
 
 // logging middleware
 app.use(function *(next){
@@ -24,7 +34,6 @@ app.use(function *(next){
 	console.log('%s %s - %s', this.method, this.url, ms);
 })
 
-// app.use(serve('node_modules'));
 app.use(serve(__dirname+'/browser'));
 
 app.use(router.get('/joke', function* (){
@@ -32,17 +41,10 @@ app.use(router.get('/joke', function* (){
 	this.body = jokes[rand];
 }))
 
-// app.use(router.routes());
-
-// app.use(router.get('/', serve('.')))
-
-// app.use(function* index() {
-//   yield send(this, __dirname + '/index.html');
-// });
+app.use(router.post('/joke', function* () {
+	jokes.push(this.request.body.joke);
+	this.body = this.request.body.joke;
+}))
 
 app.listen(3000);
 console.log("tell me a joke on port 3000")
-
-
-// this last middleware catches any request that isn't handled by
-// koa-static or koa-router, ie your index.html in your example

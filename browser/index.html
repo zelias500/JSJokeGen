@@ -6,9 +6,15 @@
 
 <body ng-app='jokeGenerator'>
 	<div ng-controller='jokeCtrl'>
-		<h1>JAVASCRIPT JOKE GENERATOR</h1>
+		<h1 style='text-align:center'>JAVASCRIPT JOKE GENERATOR</h1>
 		<button ng-click='getJoke(jokeGetter)'>Get a Joke!</button>
-		<h2>{{currentJoke}}</h2>
+		<h2 style='text-align:center'>{{currentJoke}}</h2>
+
+		<br />
+		<h3>Submit a Joke</h3>
+		<textarea style="width:200px; height:200px; font-size:14px;" type='text' ng-model='newJoke'></textarea>
+		<h2>{{newJoke}}</h2>
+		<button ng-click='submitJoke(newJoke)'>Submit Joke</button>
 	</div>
 </body>
 </html>
